@@ -3,8 +3,11 @@ package org.music_advisor;
 import java.util.Scanner;
 
 public class Main {
+    private static Authorization authorization = new Authorization();
+    public static String SERVER_PATH = "";
+
     public static void main(String[] args) {
-        Server server = new Server();
+        getServerPath(args);
         menu();
     }
 
@@ -15,8 +18,9 @@ public class Main {
             String input = scanner.nextLine();
             switch (input) {
                 case "auth":
-                    authorization();
-                    authGranted = true;
+                    if(authorization.getAccessCode() && authorization.getAccessToken()) {
+                        authGranted = true;
+                    }
                     break;
                 case "new":
                     if (authGranted) {
@@ -93,10 +97,11 @@ public class Main {
                 """);
     }
 
-    public static void authorization() {
-        String link = "https://accounts.spotify.com/authorize?client_id=0d24c09ed0a24bd8b1158f94bce26278&redirect_uri=" +
-                      "http://localhost:8080&response_type=code\n" +
-                      "---SUCCESS---";
-        System.out.println(link);
+    public static void getServerPath(String[] args) {
+        if(args.length > 0 && args[0].equals("-access")) {
+            SERVER_PATH = args[1];
+        } else {
+            SERVER_PATH = "https://accounts.spotify.com";
+        }
     }
 }
