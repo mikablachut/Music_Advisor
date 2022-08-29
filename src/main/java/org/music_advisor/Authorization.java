@@ -1,5 +1,7 @@
 package org.music_advisor;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -69,8 +71,10 @@ public class Authorization {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response != null) {
-                ACCESS_TOKEN = String.valueOf(response.body());
+                ACCESS_TOKEN = response.body();
                 System.out.println(ACCESS_TOKEN);
+                JsonObject token = JsonParser.parseString(ACCESS_TOKEN).getAsJsonObject();
+                ACCESS_TOKEN = token.get("access_token").getAsString();
                 System.out.println("---SUCCESS---");
                 return true;
             }

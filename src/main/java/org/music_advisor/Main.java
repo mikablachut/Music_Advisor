@@ -26,7 +26,7 @@ public class Main {
                     break;
                 case "new":
                     if (authGranted) {
-                        newMusic();
+                        NewReleases.getNewReleases();
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
@@ -59,16 +59,6 @@ public class Main {
                     System.out.println("Command not exist!");
             }
         }
-    }
-
-    public static void newMusic() {
-        System.out.println("---NEW RELEASES---");
-        System.out.println("""
-                Mountains [Sia, Diplo, Labrinth]
-                Runaway [Lil Peep]
-                The Greatest Show [Panic! At The Disco]
-                All Out Life [Slipknot]""");
-
     }
 
     public static void featuredMusic() {
