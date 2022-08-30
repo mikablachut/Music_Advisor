@@ -33,14 +33,14 @@ public class Main {
                     break;
                 case "featured":
                     if (authGranted) {
-                        featuredMusic();
+                        FeaturedPlaylists.getFeaturedPlaylists();
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
                     break;
                 case "categories":
                     if (authGranted) {
-                        musicCategories();
+                        Categories.getCategories();
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
@@ -59,24 +59,6 @@ public class Main {
                     System.out.println("Command not exist!");
             }
         }
-    }
-
-    public static void featuredMusic() {
-        System.out.println("---FEATURED---");
-        System.out.println("""
-                Mellow Morning
-                Wake Up and Smell the Coffee
-                Monday Motivation
-                Songs to Sing in the Shower""");
-    }
-
-    public static void musicCategories() {
-        System.out.println("---CATEGORIES---");
-        System.out.println("""
-                Top Lists
-                Pop
-                Mood
-                Latin""");
     }
 
     public static void playlistsMood() {

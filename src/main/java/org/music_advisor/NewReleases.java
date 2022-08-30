@@ -12,6 +12,7 @@ import java.util.List;
 
 public class NewReleases implements Request {
     private static final String NEW_RELEASES = "/v1/browse/new-releases";
+    private static final NewReleases newReleases = new NewReleases();
 
     public static void getNewReleases() {
         HttpClient httpClient = HttpClient.newBuilder().build();
@@ -19,13 +20,14 @@ public class NewReleases implements Request {
 
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            getJsonObjectAsString(response);
+            newReleases.getJsonObjectAsString(response);
         } catch (IOException | InterruptedException e) {
             System.out.println("Error response");
         }
     }
 
-    private static void getJsonObjectAsString(HttpResponse<String> response) {
+    @Override
+    public void getJsonObjectAsString(HttpResponse<String> response) {
         List<Album> listOfAlbums = new ArrayList<>();
         String responseInJson = response.body();
         JsonObject jsonObject = JsonParser.parseString(responseInJson).getAsJsonObject();
