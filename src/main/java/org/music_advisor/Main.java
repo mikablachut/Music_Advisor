@@ -40,7 +40,7 @@ public class Main {
                     break;
                 case "categories":
                     if (authGranted) {
-                        musicCategories();
+                        Categories.getCategories();
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
@@ -59,15 +59,6 @@ public class Main {
                     System.out.println("Command not exist!");
             }
         }
-    }
-
-    public static void musicCategories() {
-        System.out.println("---CATEGORIES---");
-        System.out.println("""
-                Top Lists
-                Pop
-                Mood
-                Latin""");
     }
 
     public static void playlistsMood() {

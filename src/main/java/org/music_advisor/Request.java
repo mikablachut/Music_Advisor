@@ -2,6 +2,7 @@ package org.music_advisor;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public interface Request {
     static HttpRequest getRequest(String path) {
@@ -11,4 +12,5 @@ public interface Request {
                 .GET()
                 .build();
     }
+    void getJsonObjectAsString(HttpResponse<String> response);
 }

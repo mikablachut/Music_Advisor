@@ -13,6 +13,7 @@ import java.util.List;
 public class FeaturedPlaylists implements Request {
 
     private static final String FEATURED_PLAYLISTS = "/v1/browse/featured-playlists";
+    private static final FeaturedPlaylists featuredPlaylists = new FeaturedPlaylists();
 
     public static void getFeaturedPlaylists() {
         HttpClient httpClient = HttpClient.newBuilder().build();
@@ -20,13 +21,14 @@ public class FeaturedPlaylists implements Request {
 
         try {
             HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-            getJsonAsString(response);
+            featuredPlaylists.getJsonObjectAsString(response);
         } catch (IOException | InterruptedException e) {
             System.out.println("Error response");
         }
     }
 
-    public static void getJsonAsString(HttpResponse<String> response) {
+    @Override
+    public void getJsonObjectAsString(HttpResponse<String> response) {
         List<Playlist> listOfPlaylists = new ArrayList<>();
         String responseInJson = response.body();
         JsonObject jsonObject = JsonParser.parseString(responseInJson).getAsJsonObject();
