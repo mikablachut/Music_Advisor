@@ -13,8 +13,8 @@ import java.util.Base64;
 
 public class Authorization {
     public static String REDIRECT_URI = "http://localhost:8080";
-    public static String CLIENT_ID = "0d24c09ed0a24bd8b1158f94bce26278"; //spotify client_id
-    public static String CLIENT_SECRET = "aba1b82fee54406d82183ec893ad4aff";//spotify client_secret
+    public static String CLIENT_ID = ""; //spotify client_id
+    public static String CLIENT_SECRET = "";//spotify client_secret
     public static String ACCESS_TOKEN = "";
     public static String ACCESS_CODE = "";
 
@@ -75,7 +75,7 @@ public class Authorization {
                 System.out.println(ACCESS_TOKEN);
                 JsonObject token = JsonParser.parseString(ACCESS_TOKEN).getAsJsonObject();
                 ACCESS_TOKEN = token.get("access_token").getAsString();
-                System.out.println("---SUCCESS---");
+                System.out.println("Success!");
                 return true;
             }
         } catch (IOException | InterruptedException e) {

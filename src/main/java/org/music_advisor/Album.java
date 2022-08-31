@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public class Album {
     private String albumTitle;
-    private String[] listOfArtist;
+    private String listOfArtist;
     private String link;
 
     public Album() {
 
     }
 
-    public Album(String albumTitle, String[] listOfArtist, String link) {
+    public Album(String albumTitle, String listOfArtist, String link) {
         this.albumTitle = albumTitle;
         this.listOfArtist = listOfArtist;
         this.link = link;
@@ -25,11 +25,11 @@ public class Album {
         this.albumTitle = albumTitle;
     }
 
-    public String[] getListOfArtist() {
+    public String getListOfArtist() {
         return listOfArtist;
     }
 
-    public void setListOfArtist(String[] listOfArtist) {
+    public void setListOfArtist(String listOfArtist) {
         this.listOfArtist = listOfArtist;
     }
 
@@ -43,6 +43,6 @@ public class Album {
 
     @Override
     public String toString() {
-        return albumTitle + "\n" + Arrays.toString(listOfArtist) + "\n" + link + "\n";
+        return albumTitle + "\n" + listOfArtist + "\n" + link + "\n";
     }
 }

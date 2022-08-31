@@ -3,7 +3,7 @@ package org.music_advisor;
 import java.util.Scanner;
 
 public class Main {
-    private static Authorization authorization = new Authorization();
+    private static final Authorization authorization = new Authorization();
     public static String SERVER_PATH = "";
 
     public static String API_SERVER_PATH = "";
@@ -18,7 +18,8 @@ public class Main {
         boolean authGranted = false;
         while (true) {
             String input = scanner.nextLine();
-            switch (input) {
+            String option = input.split(" ")[0];
+            switch (option) {
                 case "auth":
                     if(authorization.getAccessCode() && authorization.getAccessToken()) {
                         authGranted = true;
@@ -45,9 +46,10 @@ public class Main {
                         System.out.println("Please, provide access for application.");
                     }
                     break;
-                case "playlists Mood":
+                case "playlists":
                     if (authGranted) {
-                        playlistsMood();
+                        String categoryName = input.split(" ",2)[1];
+                        PlaylistsCategory.getPlaylistsByCategory(categoryName);
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
@@ -59,16 +61,6 @@ public class Main {
                     System.out.println("Command not exist!");
             }
         }
-    }
-
-    public static void playlistsMood() {
-        System.out.println("---MOOD PLAYLISTS---");
-        System.out.println("""
-                Walk Like A Badass
-                Rage Beats
-                Arab Mood Booster
-                Sunday Stroll
-                """);
     }
 
     public static void getServerPath(String[] args) {
