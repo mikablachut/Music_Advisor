@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     private static final Authorization authorization = new Authorization();
     public static String SERVER_PATH = "";
-
     public static String API_SERVER_PATH = "";
+    public static String PAGE = "";
 
     public static void main(String[] args) {
         getServerPath(args);
@@ -64,12 +64,22 @@ public class Main {
     }
 
     public static void getServerPath(String[] args) {
-        if(args.length > 0 && args[0].equals("-access") && args[2].equals("-resource")) {
+        if (args.length > 0 && args[0].equals("-access")) {
             SERVER_PATH = args[1];
-            API_SERVER_PATH = args[3];
         } else {
             SERVER_PATH = "https://accounts.spotify.com";
+        }
+
+        if (args.length > 0 && args[2].equals("-resource")) {
+            API_SERVER_PATH = args[3];
+        } else {
             API_SERVER_PATH = "https://api.spotify.com";
+        }
+
+        if (args.length > 0 && args[4].equals("-page")) {
+            PAGE = args[5];
+        } else {
+            PAGE = "5";
         }
     }
 }
