@@ -1,8 +1,10 @@
-package org.music_advisor;
+package org.music_advisor.controller;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.music_advisor.model.Playlist;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,12 +13,13 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistsCategory implements RequestAndResponse {
+public class PlaylistsCategory implements RequestAndResponse<Playlist> {
     private static final String PLAYLISTS_CATEGORY = "/v1/browse/categories";
     private static final String PLAYLIST = "/v1/browse/categories/";
     private static final PlaylistsCategory playlistCategory = new PlaylistsCategory();
 
-    public static void getPlaylistsByCategory(String categoryName) {
+    public static String getPlaylistsByCategory(String categoryName) {
+        List<Playlist> listOfPlaylists = new ArrayList<>();
         String response = RequestAndResponse.getRequest(Main.API_SERVER_PATH + PLAYLISTS_CATEGORY);
         String idCategory = "Unknown category name.";
         JsonObject jsonObject = JsonParser.parseString(response).getAsJsonObject();
@@ -48,16 +51,22 @@ public class PlaylistsCategory implements RequestAndResponse {
                 } else if (responseCategory.body().contains("Test unpredictable error message")) {
                     System.out.println("Test unpredictable error message");
                 } else {
-                    playlistCategory.getJsonObjectAsString(responseCategory.body());
+                    listOfPlaylists = playlistCategory.getJsonObjectAsString(responseCategory.body());
                 }
             } catch (IOException | InterruptedException e) {
                 System.out.println("Error response");
             }
         }
+
+        StringBuilder result = new StringBuilder();
+        for (Playlist playlist : listOfPlaylists) {
+            result.append(playlist.getName()).append("\n").append(playlist.getLink()).append("\n").append("\n");
+        }
+        return result.toString();
     }
 
     @Override
-    public void getJsonObjectAsString(String response) {
+    public List<Playlist> getJsonObjectAsString(String response) {
         List<Playlist> listOfCategories = new ArrayList<>();
         JsonObject jsonObject = JsonParser.parseString(response).getAsJsonObject();
         JsonObject playlists = jsonObject.getAsJsonObject("playlists");
@@ -69,8 +78,6 @@ public class PlaylistsCategory implements RequestAndResponse {
                              .replaceAll("\"", ""));
             listOfCategories.add(playlist);
         }
-        for (Playlist playlist : listOfCategories) {
-            System.out.println(playlist);
-        }
+        return listOfCategories;
     }
 }

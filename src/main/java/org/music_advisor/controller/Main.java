@@ -1,4 +1,6 @@
-package org.music_advisor;
+package org.music_advisor.controller;
+
+import org.music_advisor.view.View;
 
 import java.util.Scanner;
 
@@ -10,12 +12,14 @@ public class Main {
 
     public static void main(String[] args) {
         getServerPath(args);
-        menu();
+        View view = new View(Integer.parseInt(PAGE));
+        menu(view);
     }
 
-    public static void menu() {
+    public static void menu(View view) {
         Scanner scanner = new Scanner(System.in);
         boolean authGranted = false;
+
         while (true) {
             String input = scanner.nextLine();
             String option = input.split(" ")[0];
@@ -27,21 +31,21 @@ public class Main {
                     break;
                 case "new":
                     if (authGranted) {
-                        NewReleases.getNewReleases();
+                        view.displayObjectOnPage(NewReleases.getNewReleases());
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
                     break;
                 case "featured":
                     if (authGranted) {
-                        FeaturedPlaylists.getFeaturedPlaylists();
+                        view.displayObjectOnPage(FeaturedPlaylists.getFeaturedPlaylists());
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
                     break;
                 case "categories":
                     if (authGranted) {
-                        Categories.getCategories();
+                        view.displayObjectOnPage(Categories.getCategories());
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
@@ -49,10 +53,16 @@ public class Main {
                 case "playlists":
                     if (authGranted) {
                         String categoryName = input.split(" ",2)[1];
-                        PlaylistsCategory.getPlaylistsByCategory(categoryName);
+                        view.displayObjectOnPage(PlaylistsCategory.getPlaylistsByCategory(categoryName));
                     } else {
                         System.out.println("Please, provide access for application.");
                     }
+                    break;
+                case "next":
+                    view.nextPage();
+                    break;
+                case "prev":
+                    view.previousPage();
                     break;
                 case "exit":
                     System.out.println("---GOODBYE!---");
