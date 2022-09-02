@@ -1,12 +1,13 @@
-package org.music_advisor;
+package org.music_advisor.controller;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
-public interface RequestAndResponse {
+public interface RequestAndResponse<T> {
     static String getRequest(String path) {
         HttpClient httpClient = HttpClient.newBuilder().build();
         HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -23,5 +24,5 @@ public interface RequestAndResponse {
         }
     }
 
-    void getJsonObjectAsString(String response);
+    List<T> getJsonObjectAsString(String response);
 }

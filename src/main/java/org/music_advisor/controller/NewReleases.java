@@ -1,22 +1,30 @@
-package org.music_advisor;
+package org.music_advisor.controller;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.music_advisor.model.Album;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewReleases implements RequestAndResponse {
+public class NewReleases implements RequestAndResponse<Album> {
     private static final String NEW_RELEASES = "/v1/browse/new-releases";
     private static final NewReleases newReleases = new NewReleases();
 
-    public static void getNewReleases() {
+    public static String getNewReleases() {
         String response = RequestAndResponse.getRequest(Main.API_SERVER_PATH + NEW_RELEASES);
-        newReleases.getJsonObjectAsString(response);
+        List<Album> listOfAlbums = newReleases.getJsonObjectAsString(response);
+        StringBuilder result = new StringBuilder();
+        for (Album album : listOfAlbums) {
+                result.append(album.getAlbumTitle()).append("\n").append(album.getListOfArtist()).append("\n")
+                        .append(album.getLink()).append("\n").append("\n");
+        }
+        return result.toString();
     }
 
     @Override
-    public void getJsonObjectAsString(String response) {
+    public List<Album> getJsonObjectAsString(String response) {
         List<Album> listOfAlbums = new ArrayList<>();
         JsonObject jsonObject = JsonParser.parseString(response).getAsJsonObject();
         JsonObject albums = jsonObject.getAsJsonObject("albums");
@@ -37,8 +45,7 @@ public class NewReleases implements RequestAndResponse {
                           .replace("\"",""));
             listOfAlbums.add(album);
         }
-        for (Album album : listOfAlbums) {
-            System.out.println(album);
-        }
+        return listOfAlbums;
     }
 }
+

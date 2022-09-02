@@ -1,4 +1,4 @@
-package org.music_advisor;
+package org.music_advisor.model;
 
 public class Playlist {
     private String name;
