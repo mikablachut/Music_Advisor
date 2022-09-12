@@ -93,7 +93,7 @@ In that case user will not be able to use the aplication functionality.
 <summary><b>Below is an output example of the described program.</b></summary>
 
 The greater-than symbol followed by a space ```(> )``` represents the user input. Note that it's not part of the input.
-  
+
 ```
 > new
 Please, provide access for application.
