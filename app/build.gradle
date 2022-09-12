@@ -11,6 +11,10 @@ plugins {
     id 'application'
 }
 
+run {
+    standardInput = System.in
+}
+
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
@@ -24,7 +28,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'Music_Advisor.App'
+    mainClass = 'music_advisor.view.App'
 }
 
 tasks.named('test') {
@@ -34,7 +38,7 @@ tasks.named('test') {
 
 jar {
     manifest {
-        attributes "Main-Class": "music_advisor.App"
+        attributes "Main-Class": "music_advisor.view.App"
     }
 
     from {
