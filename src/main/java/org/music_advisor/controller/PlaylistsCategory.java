@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.music_advisor.model.Playlist;
+import org.music_advisor.view.Main;
 
 import java.io.IOException;
 import java.net.URI;

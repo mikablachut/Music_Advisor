@@ -3,6 +3,7 @@ package org.music_advisor.controller;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.sun.net.httpserver.HttpServer;
+import org.music_advisor.view.Main;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -13,8 +14,8 @@ import java.util.Base64;
 
 public class Authorization {
     public static String REDIRECT_URI = "http://localhost:8080";
-    public static String CLIENT_ID = "0d24c09ed0a24bd8b1158f94bce26278"; //spotify client_id
-    public static String CLIENT_SECRET = "aba1b82fee54406d82183ec893ad4aff";//spotify client_secret
+    public static String CLIENT_ID = ""; //spotify client_id
+    public static String CLIENT_SECRET = "";//spotify client_secret
     public static String ACCESS_TOKEN = "";
     public static String ACCESS_CODE = "";
 
