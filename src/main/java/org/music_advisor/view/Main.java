@@ -1,5 +1,6 @@
-package org.music_advisor.controller;
+package org.music_advisor.view;
 
+import org.music_advisor.controller.*;
 import org.music_advisor.view.View;
 
 import java.util.Scanner;
