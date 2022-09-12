@@ -28,18 +28,7 @@ The idea for project cames from Java Beckend Developer track in [JetBrains Acade
 
 ## Setup
 
-Make sure you have [git](https://git-scm.com/) installed. To run the application you have tu use your own Spotify client_id and Spotify client_secret. To obtained it, you must go to  the [Spotify Web site for developers](https://developer.spotify.com/dashboard/login) and create your application. To create an application, you should select Dashboard tab on the site, log in to Spotify, and click the button Create an App. Than paste your client_id and client_secret to:
-
-```java
-public class Authorization {
-    public static String REDIRECT_URI = "http://localhost:8080";
-    public static String CLIENT_ID = ""; //spotify client_id
-    public static String CLIENT_SECRET = "";//spotify client_secret
-    public static String ACCESS_TOKEN = "";
-    public static String ACCESS_CODE = "";
-```
-
-Next add the http://localhost:8080 to the whitelist of redirect_uri in your application settings on the Spotify site (Dashboard -> your app -> edit settings -> redirect URIs).
+Make sure you have [git](https://git-scm.com/) installed. 
 
 ### Gradle
 
@@ -51,6 +40,19 @@ Clone repository and enter its folder:
 git clone https://github.com/dominikablachut/Music_Advisor.git
 cd Music_Advisor
 ```
+
+To run the application you have tu use your own Spotify client_id and Spotify client_secret. To obtained it, you must go to  the [Spotify Web site for developers](https://developer.spotify.com/dashboard/login) and create your application. To create an application, you should select Dashboard tab on the site, log in to Spotify, and click the button Create an App. Than paste your client_id and client_secret to:
+
+```java
+public class Authorization {
+    public static String REDIRECT_URI = "http://localhost:8080";
+    public static String CLIENT_ID = ""; //spotify client_id
+    public static String CLIENT_SECRET = "";//spotify client_secret
+    public static String ACCESS_TOKEN = "";
+    public static String ACCESS_CODE = "";
+```
+
+Next add the http://localhost:8080 to the whitelist of redirect_uri in your application settings on the Spotify site (Dashboard -> your app -> edit settings -> redirect URIs).
 
 Now you can run the app using Gradle:
 
