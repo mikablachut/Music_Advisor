@@ -76,7 +76,7 @@ Once the program starts, user should enter the ```auth``` command. The applicati
 
 ```Got the code. Return back to your program.```
 
-After reveiving the code, the aplication will send an http request to obtain access_token. If the request is successful, the user will be able to enter the following commands in the console:
+After receiving the code, the aplication will send a http request to obtain access_token. If the request is successful, the user will be able to enter the following commands in the console:
 - featured — displays a list of Spotify-featured playlists with their links fetched from API;
 - new — displays a list of new albums with artists and links on Spotify;
 - categories — displays a list of all available categories on Spotify (just their names);
