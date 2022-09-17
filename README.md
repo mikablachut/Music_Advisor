@@ -37,7 +37,7 @@ Make sure you have [git](https://git-scm.com/) installed.
 Clone the repository and enter its folder:
 
 ```
-git clone https://github.com/dominikablachut/Music_Advisor.git
+git clone https://github.com/mikablachut/Music_Advisor.git
 cd Music_Advisor
 ```
 
