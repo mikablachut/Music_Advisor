@@ -21,9 +21,7 @@ The idea for project comes from [JetBrains Academy](https://www.jetbrains.com/ac
   <li>Java 17</li>
   <li>GSON</li>
   <li>OAuth</li>
-  <li>REST API</li>
   <li>Gradle</li>
-  <li>JUnit</li>
 </ul>
 
 ## Setup
